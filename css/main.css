@@ -1,0 +1,846 @@
+@charset "utf-8";
+
+body.on {
+  overflow: hidden;
+}
+
+/* sec1 */
+.sec1 .videoCon {
+  height: 100vh;
+  display: flex;
+  position: relative;
+}
+.sec1 video {
+  max-width: 2100px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+}
+.sec1 .video p {
+  position: absolute;
+  bottom: -10%;
+  left: 50%;
+  width: 100%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transition: 1s;
+}
+.sec1 .video p span:first-of-type {
+  font-size: 2.5rem;
+  font-weight: lighter;
+  color: #eaeaea;
+}
+.sec1 .video p span:last-of-type {
+  font-size: 6rem;
+  font-weight: bold;
+  padding-top: 2rem;
+  color: #fff;
+}
+.sec1 .video.swiper-slide-active p {
+  opacity: 1;
+  bottom: 10%;
+}
+
+.sec1 .next,
+.sec1 .prev {
+  color: #fff;
+}
+
+/* sec1 media */
+@media (max-width: 1024px) {
+  .sec1 .video p {
+    text-align: center;
+  }
+}
+@media (max-width: 768px) {
+  .sec1 .video p span:first-of-type {
+    font-size: 1.7rem;
+  }
+  .sec1 .video p span:last-of-type {
+    font-size: 5rem;
+    font-weight: bold;
+    padding-top: 2rem;
+    color: #fff;
+  }
+}
+
+/* sec2 */
+/* sec2_슬라이드 영역====================================== */
+.sec2 {
+  background-color: #000;
+  position: relative;
+  color: #fff;
+}
+.sec2 .infoInner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  height: 80%;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+.sec2 .infoInner.active {
+  display: block;
+}
+.sec2 .infoList {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1.5%;
+}
+.sec2 .infoList > div {
+  position: relative;
+  width: 50%;
+  padding-top: 47%;
+  border: 1px solid #444444;
+  overflow: hidden;
+}
+.sec2 .infoLeft {
+  border-radius: 0 0 0 50px;
+}
+.sec2 .infoRight {
+  border-radius: 0 50px 0 0;
+  transform: translate(-2%, -2%);
+  z-index: -1;
+}
+.sec2 .infoList img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sec2 .infoBtn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 80px;
+  background-color: #1f1f1f;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+  z-index: 20;
+  display: none;
+}
+.sec2 .infoBtn.active {
+  display: flex;
+}
+.sec2 .infoBtn i {
+  padding: 0 1rem;
+}
+
+/* sec2_좌측(앨범정보) 영역====================================== */
+.sec2 .albumCon {
+  width: 90%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-200%, -50%);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  z-index: -1;
+  transition: 0.5s;
+}
+
+.sec2 .albumCon.active {
+  z-index: 10;
+  transform: translate(-50%, -50%);
+}
+.sec2 .albumCon h2 {
+  width: 100%;
+  font-size: 1.5rem;
+  line-height: 1.7;
+  text-align: center;
+  padding: 0.5rem 0 3rem 0;
+}
+.sec2 .albumCon h2 strong {
+  font-weight: bold;
+  font-size: 1.8rem;
+}
+.sec2 .albumImg {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.sec2 .albumImg > div:first-of-type {
+  position: relative;
+  width: 100%;
+  padding-top: 95%;
+  overflow: hidden;
+}
+.sec2 .albumImg > div:first-of-type img {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+}
+.sec2 .albumImg > .track {
+  position: relative;
+  padding-top: 0.5rem;
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+.sec2 .albumImg > .track:hover {
+  cursor: pointer;
+}
+.sec2 .trackList {
+  position: absolute;
+  bottom: 200%;
+  right: -20%;
+  width: 0;
+  padding: 1rem 1rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 15px 0 0 15px;
+  opacity: 0;
+  transition: 0.2s;
+}
+.sec2 .trackList.on {
+  opacity: 1;
+  right: 0;
+  width: 250%;
+}
+.sec2 .trackList > li {
+  font-size: 1.2rem;
+  font-weight: normal;
+  line-height: 1.7;
+}
+
+.sec2 .albumDes {
+  width: calc(60% - 1.5rem);
+  padding: 0.5rem 1rem;
+  background-color: #1f1f1f;
+  border-radius: 10px 10px;
+}
+
+.sec2 .albumDes h3 {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  line-height: 1.5;
+  padding: 1rem 0;
+}
+.sec2 .albumDes p {
+  color: #cccccc;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+.sec2 .photoBtn,
+.sec2 .albumBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  display: none;
+}
+.sec2 .photoBtn.active,
+.sec2 .albumBtn.active {
+  display: flex;
+  z-index: 20;
+}
+.sec2 .albumBtn {
+  left: 0;
+}
+.sec2 .photoBtn {
+  right: 0;
+}
+
+/* sec2_우측(사진) 영역====================================== */
+.sec2 .photoCon {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  transform: translateX(200%);
+  z-index: -1;
+  transition: 0.5s;
+}
+.sec2 .photoCon.active {
+  transform: translateX(0);
+  z-index: 10;
+}
+.sec2 .photoBg1,
+.sec2 .photoBg2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  object-fit: cover;
+}
+
+.sec2 .photoList {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 3rem;
+}
+.sec2 .photoImg {
+  width: calc(50% - 1.5rem);
+  padding-top: 24%;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.sec2 .photoImg img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+}
+/* sec2_우측(모달) 영역====================================== */
+.sec2 .photoModal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: none;
+  z-index: 20;
+}
+.sec2 .popUp {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  overflow: hidden;
+  background-color: #fff;
+  display: none;
+}
+.sec2 .photoModal.on,
+.sec2 .popUp.on {
+  display: block;
+}
+.sec2 .popUp img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.sec2 .photoModal .close {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  border: 2px solid #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  right: 10%;
+  top: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+/* sec2 media */
+@media (max-width: 1400px) {
+  .sec2 .photoList {
+    width: 85%;
+  }
+  .sec2 .photoImg {
+    padding-top: 30%;
+  }
+}
+
+@media (max-width: 1280px) {
+  .sec2 .albumCon {
+    width: 95%;
+    gap: 1.2rem;
+  }
+  .sec2 .albumCon h2 {
+    padding: 0.5rem 0;
+  }
+}
+@media (max-width: 1024px) {
+  .sec2 {
+    height: auto;
+  }
+  .sec2 .infoInner {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    transform: translate(0, 0);
+  }
+  .sec2 .infoCon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    height: 80%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* 좌측(앨범) */
+  .sec2 .albumCon {
+    position: relative;
+    padding: 15% 0 10% 0;
+    transform: translate(-50%, 0);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+  }
+  .sec2 .albumCon.active {
+    transform: translate(-50%, 0);
+  }
+  .sec2 .albumImg {
+    width: 60%;
+  }
+  .sec2 .albumCon h2 {
+    padding: 0 0;
+  }
+  .sec2 .trackList > li {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  .sec2 .albumDes {
+    width: 100%;
+    padding: 1.5rem 1rem;
+  }
+  .sec2 .albumDes h3 {
+    padding: 0.5rem 0 1.5rem 0;
+  }
+  .sec2 .albumDes p {
+    text-align: center;
+  }
+
+  /* 우측(포토) */
+  .sec2 .photoCon {
+    padding: 20% 0 10% 0;
+  }
+  .sec2 .photoList {
+    position: relative;
+    transform: translate(-50%, 0);
+  }
+}
+
+@media (max-width: 768px) {
+  /* 슬라이드 */
+  .sec2 .infoCon {
+    width: 100%;
+    height: 100%;
+    transform: translate(0, 0);
+  }
+  .sec2 .infoList {
+    padding-top: 0;
+  }
+  .sec2 .infoLeft,
+  .sec2 .infoRight {
+    border-radius: 0 0;
+  }
+  .sec2 .infoRight {
+    transform: translate(0, 0);
+  }
+  .sec2 .infoBtn {
+    width: 100px;
+    height: 100px;
+    flex-direction: column;
+  }
+  .sec2 .infoBtn i {
+    font-size: 1rem;
+    padding: 0.5rem 0;
+  }
+
+  /* 좌측(앨범) */
+  .sec2 .albumCon {
+    width: 100%;
+    padding: 15% 2rem 10% 2rem;
+  }
+  .sec2 .albumCon h2 {
+    font-size: 1.2rem;
+    line-height: 1.5;
+  }
+  .sec2 .albumCon h2 strong {
+    font-size: 1.35rem;
+  }
+  .sec2 .albumImg {
+    width: 80%;
+  }
+  .sec2 .albumImg > div:last-of-type {
+    font-size: 1rem;
+  }
+  .sec2 .trackList {
+    border-radius: 10px 0 0 10px;
+  }
+  .sec2 .trackList.on {
+    width: 200px;
+  }
+  .sec2 .trackList > li {
+    font-size: 0.85rem;
+  }
+  .sec2 .albumDes h3 {
+    font-size: 1.1rem;
+  }
+  /* 우측(포토) */
+  .sec2 .photoList {
+    gap: 1.5rem;
+  }
+  .sec2 .photoImg {
+    width: 100%;
+  }
+  .sec2 .photoBtn,
+  .sec2 .albumBtn {
+    position: absolute;
+    top: 20%;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 2px solid #bbbbbb;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+  }
+  .sec2 .photoBtn.active,
+  .sec2 .albumBtn.active {
+    display: flex;
+  }
+  /* 우측_모달영역 */
+  .sec2 .photoModal {
+    padding: 20% 0 10% 0;
+  }
+  .sec2 .photoModalImg {
+    position: relative;
+    width: 95%;
+    padding-top: 95%;
+    transform: translate(-50%, 0);
+  }
+  .sec2 .photoModal .close {
+    width: 20px;
+    height: 20px;
+    top: 16%;
+    right: 2.5%;
+    border: 2px solid #000;
+  }
+}
+/* sec3 */
+.sec3 {
+  position: relative;
+  background-color: #000;
+}
+.sec3 .logo {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  width: 33%;
+  padding-top: 33%;
+  transform: translate(-50%, -50%);
+}
+.sec3 .logo img,
+.sec3 .logo p {
+  position: absolute;
+  width: 100%;
+  left: 0;
+}
+.sec3 .logo img:first-of-type {
+  top: 0;
+}
+.sec3 .logo img:nth-of-type(2) {
+  top: 17.5%;
+  transform: translateY(0);
+  transition: 0.5s;
+}
+.sec3 .logo img:nth-of-type(3) {
+  top: 130%;
+  transform: scale(1);
+  transition: 0.3s;
+  opacity: 0;
+  transition: 1s;
+}
+.sec3 .logo p {
+  top: 140%;
+  opacity: 0;
+  transition: 1s;
+}
+
+.sec3 .logo.on img:nth-of-type(2) {
+  transform: translateY(-20%);
+}
+.sec3 .logo.on img:nth-of-type(3) {
+  opacity: 1;
+  top: 80%;
+  transform: scale(1.25);
+}
+.sec3 .logo.on p {
+  opacity: 1;
+  top: 100%;
+  text-align: center;
+  font-size: 1.2rem;
+}
+.sec3 .aniBg {
+  background-image: url(../img/meta_bg1.jpg);
+  background-origin: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+.sec3 .aniBg::after {
+  content: '';
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  background-color: rgba(0, 0, 0, 0.4);
+  transform: translate(-50%, -50%) scale(100);
+  filter: blur(50px) brightness(300%) contrast(300%);
+  transition: 0.8s;
+}
+.sec3 .aniBg.on::after {
+  transform: translate(-50%, -50%) scale(0);
+}
+
+.sec3 .aniBgCircle1,
+.sec3 .aniBgCircle2,
+.sec3 .aniBgCircle3,
+.sec3 .aniBgCircle4 {
+  position: absolute;
+  background-image: url(../img/meta_bg2.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.sec3 .aniBgCircle1 {
+  top: -5%;
+  right: 10%;
+  width: 10%;
+  padding-top: 10%;
+}
+.sec3 .aniBgCircle2 {
+  bottom: 15%;
+  right: -10%;
+  width: 17%;
+  padding-top: 17%;
+}
+.sec3 .aniBgCircle3 {
+  bottom: 8%;
+  left: -2%;
+  width: 10%;
+  padding-top: 10%;
+}
+.sec3 .aniBgCircle4 {
+  top: 55%;
+  left: 27%;
+  width: 6%;
+  padding-top: 6%;
+}
+
+/* media sec3 */
+@media (max-width: 1200px) {
+  .sec3 .logo {
+    width: 40%;
+    padding-top: 40%;
+  }
+  .sec3 .logo.on p {
+    top: 105%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .sec3 .logo {
+    width: 45%;
+    padding-top: 45%;
+  }
+  .sec3 .logo.on p {
+    font-size: 1.1rem;
+    line-height: 1.3;
+  }
+}
+@media (max-width: 768px) {
+  .sec3 .logo {
+    width: 65%;
+    padding-top: 65%;
+  }
+  .sec3 .logo.on p {
+    font-size: 1rem;
+  }
+}
+
+/* main sec4 */
+.sec4 {
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sec4 > ul {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+.sec4 .cafe,
+.sec4 .shop {
+  position: relative;
+  width: calc(50% - 2rem);
+  padding-top: 40%;
+  border: 1px solid #444444;
+  border-radius: 30px;
+  overflow: hidden;
+}
+.sec4 .cafe img,
+.sec4 .shop img {
+  position: absolute;
+  top: -10%;
+  left: 0;
+  width: 100%;
+  object-fit: cover;
+}
+.sec4 p {
+  position: absolute;
+  bottom: 15%;
+  width: 80%;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 0 50px 50px 0;
+  padding: 1.2em 2em;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+}
+.sec4 p:hover {
+  width: 95%;
+}
+.sec4 p:hover::before {
+  content: 'MORE';
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: #000;
+  text-align: center;
+  line-height: 70px;
+  position: absolute;
+  right: 2%;
+  top: calc((5.7em - 70px) / 2);
+}
+.sec4 p strong {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.sec4 p span {
+  font-size: 0.8em;
+  padding-top: 1em;
+  color: #eeeeee;
+}
+.sec4 p > a {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  color: transparent;
+}
+
+/* media sec4 */
+@media (max-width: 1200px) {
+  .sec4 > ul {
+    width: 90%;
+    gap: 3rem;
+  }
+  .sec4 p {
+    padding: 1.2em 1em;
+  }
+}
+@media (max-width: 1024px) {
+  .sec4 > ul {
+    width: 95%;
+    gap: 1.5rem;
+  }
+  .sec4 p {
+    width: 90%;
+  }
+  .sec4 p strong {
+    font-size: 1.3em;
+  }
+  .sec4 p span {
+    font-size: 0.75em;
+  }
+}
+
+@media (max-width: 768px) {
+  .sec4 {
+    height: auto;
+    width: 100%;
+    padding: 20% 0 10% 0;
+  }
+
+  .sec4 > ul {
+    flex-direction: column;
+    width: 70%;
+    gap: 2rem;
+  }
+  .sec4 .cafe,
+  .sec4 .shop {
+    width: 100%;
+    padding-top: 75%;
+  }
+  .sec4 .cafe img,
+  .sec4 .shop img {
+    top: -15%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .sec4 p {
+    width: 95%;
+    padding-left: 0.5rem;
+  }
+  .sec4 p strong {
+    font-size: 1.25em;
+  }
+  .sec4 p span {
+    font-size: 0.7em;
+  }
+}
