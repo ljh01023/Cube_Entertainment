@@ -1,5 +1,5 @@
 // header
-const logo = `<a href="/"><svg
+const logo = `<a href="/Cube_Entertainment"><svg
 version="1.1"
 id="레이어_1"
 xmlns="http://www.w3.org/2000/svg"
